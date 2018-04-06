@@ -30,7 +30,7 @@ func = mod.get_function("doublify")
 a_doubled = numpy.empty_like(a)
 
 t0=time.time()
-func(a_gpu, block=(32,32,1)) # blocking call?
+func(a_gpu, block=(30,30,1)) # blocking call?
 cuda.memcpy_dtoh(a_doubled, a_gpu)
 tf=time.time()
 
