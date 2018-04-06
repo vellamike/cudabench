@@ -1,5 +1,7 @@
 # cudabench
 
+A small set of CUDA benchmarks I am writing while I learn CUDA. In C++11 and pyCUDA. 
+
 ## Running all benchmarks
 
 ./run_bench.sh
