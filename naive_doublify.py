@@ -4,16 +4,15 @@ from pycuda.compiler import SourceModule
 import numpy
 import time
 
-# Let's make some random data:
-
+# Generate some random data:
 a = numpy.random.randn(30,30)
+# Convert to f32 as Nvidia devices don't support double precision
+a = a.astype(numpy.float32)
 
-a = a.astype(numpy.float32) # Convert to f32 as Nvidia devices don't support double precision
-
-
-a_gpu = cuda.mem_alloc(a.nbytes) # Allocated memory on the GPU
-
-cuda.memcpy_htod(a_gpu, a) # Do a memcpy, data is now on the GPU global memory.
+# Allocate memory on the GPU
+a_gpu = cuda.mem_alloc(a.nbytes)
+# Do a memcpy, data is now on the GPU global memory
+cuda.memcpy_htod(a_gpu, a)
 
 mod = SourceModule("""
   __global__ void doublify(float *a)
@@ -34,7 +33,3 @@ tf=time.time()
 total_time = tf-t0
 gflops = a.size/total_time * 1e-9
 print('GFLOP/s: ', gflops)
-
-
-#print(a)
-#print(a_doubled)
