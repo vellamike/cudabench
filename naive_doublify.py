@@ -1,3 +1,7 @@
+"""
+Multiply a 30x30 matrix by 2. This is a very small operation and inherently not suited to GPU, however it provides a good demonstration.
+"""
+
 import pycuda.driver as cuda
 import pycuda.autoinit #Note that you do not have to use pycuda.autoinit– initialization, context creation, and cleanup can also be performed manually, if desired
 from pycuda.compiler import SourceModule
