@@ -1,5 +1,5 @@
 import pycuda.driver as cuda
-import pycuda.autoinit
+import pycuda.autoinit #Note that you do not have to use pycuda.autoinit– initialization, context creation, and cleanup can also be performed manually, if desired
 from pycuda.compiler import SourceModule
 import numpy
 import time
